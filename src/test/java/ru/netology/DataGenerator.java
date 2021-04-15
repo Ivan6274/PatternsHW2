@@ -35,15 +35,6 @@ public class DataGenerator {
                 .statusCode(200); // код 200 Oк
     }
 
-    private static void sendRequest1(RegistrationDto blockedUser) {
-        given() // "дано"
-                .spec(requestSpec) // указываем, какую спецификацию используем
-                .body(blockedUser) // передаём в теле объект, который будет преобразован в JSON
-                .when() // "когда"
-                .post("/api/system/users") // на какой путь, относительно BaseUri отправляем запрос
-                .then() // "тогда ожидаем"
-                .statusCode(200); // код 200 OK
-    }
 
     public static String getRandomLogin() {
         String login = faker.name().name();
@@ -68,12 +59,6 @@ public class DataGenerator {
             RegistrationDto registeredUser = getUser("active");
             sendRequest(registeredUser);
             return registeredUser;
-        }
-
-        public static RegistrationDto getblockedUser(String status) {
-            RegistrationDto blockedUser = getUser("blocked");
-            sendRequest1(blockedUser);
-            return blockedUser;
         }
     }
 
